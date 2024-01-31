@@ -14,27 +14,27 @@ component "vpc" {
   }
 }
 
-#component "eks" {
-#  for_each = var.regions
-#
-#  source = "./aws-eks-fargate"
-#
-#  inputs = {
-#    vpc_id = component.vpc[each.value].vpc_id
-#    private_subnets = component.vpc[each.value].private_subnets
-#    kubernetes_version = var.kubernetes_version
-#    cluster_name = var.cluster_name
-#    manage_aws_auth_configmap = var.manage_aws_auth_configmap
-#  }
-#
-#  providers = {
-#    aws    = provider.aws.configurations[each.value]
-#    cloudinit = provider.cloudinit.this
-#    kubernetes  = provider.kubernetes.this
-#    time = provider.time.this
-#    tls = provider.tls.this
-#  }
-#}
+component "eks" {
+  for_each = var.regions
+
+  source = "./aws-eks-fargate"
+
+  inputs = {
+    vpc_id = component.vpc[each.value].vpc_id
+    private_subnets = component.vpc[each.value].private_subnets
+    kubernetes_version = var.kubernetes_version
+    cluster_name = var.cluster_name
+    manage_aws_auth_configmap = var.manage_aws_auth_configmap
+  }
+
+  providers = {
+    aws    = provider.aws.configurations[each.value]
+    cloudinit = provider.cloudinit.this
+    kubernetes  = provider.kubernetes.this
+    time = provider.time.this
+    tls = provider.tls.this
+  }
+}
 #
 ## HCP HVN and AWS Transit Gateway
 ##component "hcphvn" {
