@@ -22,6 +22,7 @@ deployment "development-airnz" {
     cluster_name              = "eks-cluster"
     manage_aws_auth_configmap = false
   }
+}
 
   deployment "prod-airnz" {
     variables = {
@@ -37,4 +38,3 @@ deployment "development-airnz" {
       manage_aws_auth_configmap = false
     }
   }
-}
