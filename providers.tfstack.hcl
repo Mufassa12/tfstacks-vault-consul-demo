@@ -48,6 +48,7 @@ required_providers {
 }
 
 provider "aws" "configurations" {
+  // two regions concurrenlty for example
   for_each = var.regions
 
   config {
